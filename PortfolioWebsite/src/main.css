@@ -1,0 +1,47 @@
+a.nav-link, a.navbar-brand{
+    cursor: pointer;
+}
+
+p, footer{
+    color: #bcbbbb
+}
+
+h1, h2, h3, h4, h5, .navbar-brand, .navbar-brand:hover{
+    color: #E0E0E0;
+}
+
+div.border-bottom{
+    --bs-border-color: #bcbbbb;
+}
+
+img.border{
+    --bs-border-color: #A1A1AA;
+}
+
+a.btn{
+    --bs-btn-color: #7D6E99;
+    --bs-btn-border-color: #7D6E99;
+    --bs-btn-hover-bg:#bcbbbb;
+    --bs-btn-hover-color: #1F1F1F;
+}
+
+a.btn-light{
+    --bs-btn-bg: #7D6E99;
+    --bs-btn-hover-bg: #1F1F1F;
+    --bs-btn-hover-color: #bcbbbb;
+    --bs-btn-hover-border-color: #7D6E99;
+    --bs-btn-color: #121212;
+}
+
+
+footer{
+    background-color: #121212
+}
+
+nav{
+    background-color: #121212
+}
+
+body{
+    background-color: #1F1F1F
+}
