@@ -95,7 +95,7 @@ export default function showPortfolioMain() {
                 {subpage === "contatti" && <TextPage/>}
             </div>
             <footer className='p-5 text-center'>
-                ©Capurro Alessandro 2025, tutti i diritti riservati.
+                © Capurro Alessandro 2025, tutti i diritti riservati.
             </footer>
         </div>
     )
