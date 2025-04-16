@@ -4,6 +4,10 @@ import HomePage from "./pages/home.jsx"
 import { useEffect, useState } from "react";
 
 export default function showPortfolioMain() {
+    var scrollToTop = () => {
+        window.scrollTo({top: 0, behavior: "smooth" });
+    }
+
     const validPages = ["home","about", "servizi", "skills", "educazione", "esperienza", "contatti"];
     const getCurrentPage = () => {
         const pathSegments = window.location.pathname.split("/");
@@ -20,6 +24,7 @@ export default function showPortfolioMain() {
             window.history.replaceState(null, "", "/home");
             setPage("home");
         }
+        scrollToTop();
     };
 
     useEffect(() => {
@@ -59,7 +64,7 @@ export default function showPortfolioMain() {
     return(
         <div>
             <nav className="navbar navbar-expand-lg sticky-top p-4" data-bs-theme="dark">
-                <div className="container-lg px-xl-5 mx-lg-5">
+                <div className="container-lg">
                     <a className="navbar-brand" onClick={() => handleNavigation("home")}>Capurro Alessandro</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
                         data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" 
