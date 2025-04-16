@@ -2,6 +2,10 @@ a.nav-link, a.navbar-brand{
     cursor: pointer;
 }
 
+span.fc-purple{
+    color:#7D6E99;
+}
+
 p, footer{
     color: #bcbbbb
 }
@@ -18,15 +22,21 @@ img.border{
     --bs-border-color: #64748B;
 }
 
-a.btn{
+a.social-btn{
     --bs-btn-color: #7D6E99;
+    --bs-btn-active-color:#bcbbbb;
+    --bs-btn-active-bg:#1F1F1F;
+    --bs-btn-active-border-color:#bcbbbb;
     --bs-btn-border-color: #7D6E99;
     --bs-btn-hover-bg:#bcbbbb;
     --bs-btn-hover-color: #1F1F1F;
 }
 
-a.btn-light{
+a.cv-btn{
     --bs-btn-bg: #7D6E99;
+    --bs-btn-border-color: #7D6E99;
+    --bs-btn-active-color: #1F1F1F;
+    --bs-btn-active-bg:#bcbbbb;
     --bs-btn-hover-bg: #1F1F1F;
     --bs-btn-hover-color: #bcbbbb;
     --bs-btn-hover-border-color: #7D6E99;
