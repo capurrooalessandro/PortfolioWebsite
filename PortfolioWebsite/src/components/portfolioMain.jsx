@@ -10,9 +10,16 @@ export default function showPortfolioMain() {
     const validPages = ["home", "about", "competenze", "educazione", "esperienza"];
 
     const scrollToTop = () => {
-        window.scrollTo({top: 50, behavior: "smooth" });
+        if (window.innerWidth <= 991) {
+            setTimeout(() => {
+                window.scrollTo({top: 50, behavior: "smooth" });
+            }, 350);
+        } else {
+            window.scrollTo({top: 50, behavior: "smooth" });
+        }
+
     }
-    const BlurPage = () => {
+    const blurPage = () => {
         var content = document.getElementById("content")
         content.classList.add("content-loading")
         setTimeout(() => {
@@ -22,6 +29,13 @@ export default function showPortfolioMain() {
         content.classList.remove("content-loaded")
     };
     
+    const closeNavbar = () => {
+        if (window.innerWidth <= 991) {
+            var navbarCollapse = document.querySelector(".navbar-toggler")
+            navbarCollapse.click();
+        }
+    }
+
     const getCurrentPage = () => {
         const pathSegments = window.location.pathname.split("/");
         return pathSegments.length > 1 ? pathSegments[1] : "home";
@@ -37,8 +51,9 @@ export default function showPortfolioMain() {
             window.history.replaceState(null, "", "/home");
             setPage("home");
         }
-        BlurPage();
         scrollToTop();
+        blurPage();
+        closeNavbar();
     };
 
     useEffect(() => {
@@ -59,7 +74,7 @@ export default function showPortfolioMain() {
             } else {
                 setPage(currentPage);
             }
-            BlurPage();
+            blurPage();
         };
             window.addEventListener("popstate", handlePopState);
         return () => {
@@ -77,7 +92,7 @@ export default function showPortfolioMain() {
 
     if (subpage === null) return null;
     return(
-        <div onLoad={() => scrollToTop() + BlurPage()}>
+        <div onLoad={() => blurPage()}>
             <nav className="navbar navbar-expand-lg sticky-top p-4" data-bs-theme="dark">
                 <div className="container-lg">
                     <a className="navbar-brand" onClick={() => handleNavigation("home")}>Capurro Alessandro</a>
