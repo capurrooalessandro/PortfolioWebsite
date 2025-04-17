@@ -6,8 +6,12 @@ span.fc-purple{
     color:#7D6E99;
 }
 
+span.fc-teal{
+    color:#5E8D87;
+}
+
 p, footer{
-    color: #bcbbbb
+    color: #bcbbbb;
 }
 
 h1, h2, h3, h4, h5, .navbar-brand, .navbar-brand:hover{
@@ -29,6 +33,7 @@ a.social-btn{
     --bs-btn-active-border-color:#bcbbbb;
     --bs-btn-border-color: #7D6E99;
     --bs-btn-hover-bg:#bcbbbb;
+    --bs-btn-hover-border-color:#bcbbbb;
     --bs-btn-hover-color: #1F1F1F;
 }
 
@@ -54,4 +59,13 @@ nav{
 
 body{
     background-color: #1F1F1F
+}
+
+div.content-loading{
+    filter: blur(4px);
+}
+
+div.content-loaded{
+    filter: blur(0px);
+    transition: filter 0.4s;
 }
