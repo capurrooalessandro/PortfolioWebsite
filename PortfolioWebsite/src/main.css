@@ -1,3 +1,23 @@
+footer{
+    background-color: #121212
+}
+
+nav{
+    background-color: #121212
+}
+
+body{
+    background-color: #1F1F1F
+}
+
+h1, h2, h3, h4, h5, .navbar-brand, .navbar-brand:hover{
+    color: #E0E0E0;
+}
+
+p, footer{
+    color: #bcbbbb;
+}
+
 a.nav-link, a.navbar-brand{
     cursor: pointer;
 }
@@ -8,14 +28,6 @@ span.fc-purple{
 
 span.fc-teal{
     color:#5E8D87;
-}
-
-p, footer{
-    color: #bcbbbb;
-}
-
-h1, h2, h3, h4, h5, .navbar-brand, .navbar-brand:hover{
-    color: #E0E0E0;
 }
 
 div.border-bottom{
@@ -30,7 +42,7 @@ a.social-btn{
     --bs-btn-color: #7D6E99;
     --bs-btn-active-color:#bcbbbb;
     --bs-btn-active-bg:#1F1F1F;
-    --bs-btn-active-border-color:#bcbbbb;
+    --bs-btn-active-border-color:#E0E0E0;
     --bs-btn-border-color: #7D6E99;
     --bs-btn-hover-bg:#bcbbbb;
     --bs-btn-hover-border-color:#bcbbbb;
@@ -48,24 +60,34 @@ a.cv-btn{
     --bs-btn-color: #121212;
 }
 
-
-footer{
-    background-color: #121212
+div#section{
+    overflow-x: hidden;
 }
 
-nav{
-    background-color: #121212
+div.left-col-hidden{
+    transform: translateX(-3000px) ;
 }
 
-body{
-    background-color: #1F1F1F
+div.right-col-hidden{
+    transform: translateX(3000px) ;
 }
 
-div.content-loading{
-    filter: blur(4px);
+div.col-show-anim{
+    transform: translateX(0%) ;
+    transition: transform 1.0s ease-out;
 }
 
-div.content-loaded{
-    filter: blur(0px);
-    transition: filter 0.4s;
+div.right-col-show, div.left-col-show{
+    transform: translateX(0%) ;
 }
+
+div.left-col-hide{
+    transform: translateX(-3000px) ;
+    transition: transform 1.6s ease-in;
+}
+
+div.right-col-hide{
+    transform: translateX(3000px) ;
+    transition: transform 1.6s ease-in;
+}
+
