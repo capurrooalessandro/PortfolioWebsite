@@ -1,4 +1,5 @@
 import viteLogo from '/vite.svg'
+import { currentYear } from './pages/about.jsx'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import TextPage from "./pages/test.jsx"
@@ -6,7 +7,29 @@ import HomePage from "./pages/home.jsx"
 import AboutPage from './pages/about.jsx'
 import { useEffect, useState } from "react";
 
+export const showCols = () => {
+    var leftCol = document.getElementById("leftCol")
+    var rightCol = document.getElementById("rightCol")
+
+    setTimeout(()=> {
+        leftCol.classList.remove("left-col-hidden")
+        rightCol.classList.remove("right-col-hidden")
+        leftCol.classList.add("col-show-anim")
+        rightCol.classList.add("col-show-anim")
+    }, 100)
+    setTimeout(() => {
+        leftCol.classList.remove("col-show-anim")
+        rightCol.classList.remove("col-show-anim")
+    }, 1300);
+};
+
+
 export default function showPortfolioMain() {
+
+    //////////////////////////////////
+    /// Hander code for screen size
+    //////////////////////////////////
+
     const [ScreenSizeLg, setScreenSizeLg] = useState(window.innerWidth <= 991)
 
     useEffect(() =>{
@@ -17,6 +40,15 @@ export default function showPortfolioMain() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    //////////////////////////////////////
+    /// Hander code for screen size end
+    //////////////////////////////////////
+    
+
+    ////////////////////////////////////////////////////////////
+    /// Code for various functions (animations, scroll, etc.)
+    ////////////////////////////////////////////////////////////
 
     const scrollToTop = () => {
         if (window.innerWidth >= 991) {
@@ -49,8 +81,14 @@ export default function showPortfolioMain() {
             navbarCollapse.click();
         }
     }
+
+    ////////////////////////////////////
+    /// Code for various functions end
+    ////////////////////////////////////
+
+
     //////////////////////////
-    //Page navigation code
+    /// Page navigation code
     //////////////////////////
 
     const getCurrentPage = () => {
@@ -125,11 +163,16 @@ export default function showPortfolioMain() {
     }, [subpage]);
 
     if (subpage === null) return null;
+
+    ///////////////////////////////
+    /// Page navigation code end
+    ///////////////////////////////
+
     return(
         <div onLoad={() => scrollToTop()}>
             <nav className="navbar navbar-expand-lg sticky-top p-4" data-bs-theme="dark">
                 <div className="container-lg">
-                    <a className="navbar-brand" onClick={() => handleNavigation("home")}>Capurro Alessandro</a>
+                    <a className="navbar-brand fw-medium" onClick={() => handleNavigation("home")}>Capurro Alessandro</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
                         data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" 
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -137,46 +180,29 @@ export default function showPortfolioMain() {
                     </button>
                     <div className="collapse navbar-collapse d-lg-flex justify-content-md-end text-center" id="navbarCollapse">
                         <div className="navbar-nav mt-lg-0 mt-3">
-                            <a className={`nav-link mx-lg-1 ${subpage === "home" ? `active ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("home")}>Home</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "home" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("home")}>Home</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "about" ? `active ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("about")}>About</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "about" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("about")}>About</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "educazione" ? `active ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("educazione")}>Educazione</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "educazione" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("educazione")}>Educazione</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "competenze" ? `active ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("competenze")}>Competenze</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "competenze" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("competenze")}>Competenze</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "esperienza" ? `active ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("esperienza")}>Esperienza</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "esperienza" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("esperienza")}>Esperienza</a>
                         </div>
                     </div>
                 </div>
             </nav>
-            <div id='section' className={`container-fluid ${ScreenSizeLg ? "" : "min-vh-100"} ${subpage === "home" || subpage === "about" ? "d-flex align-items-center" : ""} `}  data-bs-theme="dark">
+            <div id='section' className={`container-fluid ${subpage != "home" && ScreenSizeLg ? "" : "min-vh-100"} ${subpage === "home" || subpage === "about" ? "d-flex align-items-center" : ""} `} data-bs-theme="dark">
                 {subpage === "home" && <HomePage/>}
                 {subpage === "about" && <AboutPage/>}
                 {subpage === "competenze" && <TextPage/>}
                 {subpage === "educazione" && <TextPage/>}
                 {subpage === "esperienza" && <TextPage/>}
             </div>
-            <footer className='p-5 text-center'>
-                © Capurro Alessandro 2025, tutti i diritti riservati.
+            <footer className='p-5 text-center fw-medium'>
+                © {currentYear} Capurro Alessandro, tutti i diritti riservati.
             </footer>
         </div>
     )
 }
-
-export const showCols = () => {
-    var leftCol = document.getElementById("leftCol")
-    var rightCol = document.getElementById("rightCol")
-
-    setTimeout(()=> {
-        leftCol.classList.remove("left-col-hidden")
-        rightCol.classList.remove("right-col-hidden")
-        leftCol.classList.add("col-show-anim")
-        rightCol.classList.add("col-show-anim")
-    }, 100)
-    setTimeout(() => {
-        leftCol.classList.remove("col-show-anim")
-        rightCol.classList.remove("col-show-anim")
-    }, 1300);
-};
-

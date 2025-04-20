@@ -10,7 +10,7 @@ body{
     background-color: #1F1F1F
 }
 
-h1, h2, h3, h4, h5, .navbar-brand, .navbar-brand:hover{
+h1, h2, h3, h4, h5, h6{
     color: #E0E0E0;
 }
 
@@ -18,8 +18,19 @@ p, footer{
     color: #bcbbbb;
 }
 
-a.nav-link, a.navbar-brand{
+a.nav-link{
     cursor: pointer;
+}
+
+a.navbar-brand{
+    cursor: pointer;
+    color:#E0E0E0;
+    transition: color 0.2s ease-in-out;
+}
+
+a.navbar-brand:hover{
+    color:#bcbbbb;
+    transition: color 0.2s ease-in-out;
 }
 
 span.fc-purple{
@@ -49,6 +60,13 @@ a.social-btn{
     --bs-btn-hover-color: #1F1F1F;
 }
 
+a.cv-btn:hover{
+    span.icon-color{
+        color: #7D6E99;
+        transition: color 0.3s;
+    }
+}
+
 a.cv-btn{
     --bs-btn-bg: #7D6E99;
     --bs-btn-border-color: #7D6E99;
@@ -58,6 +76,10 @@ a.cv-btn{
     --bs-btn-hover-color: #bcbbbb;
     --bs-btn-hover-border-color: #7D6E99;
     --bs-btn-color: #121212;
+    span.icon-color{
+        color: #121212;
+        transition: color 0.3s;
+    }
 }
 
 div#section{
@@ -65,16 +87,16 @@ div#section{
 }
 
 div.left-col-hidden{
-    transform: translateX(-3000px) ;
+    transform: translateX(-1200%) ;
 }
 
 div.right-col-hidden{
-    transform: translateX(3000px) ;
+    transform: translateX(1200%) ;
 }
 
 div.col-show-anim{
     transform: translateX(0%) ;
-    transition: transform 1.0s ease-out;
+    transition: transform 1s ease-out;
 }
 
 div.right-col-show, div.left-col-show{
@@ -82,12 +104,12 @@ div.right-col-show, div.left-col-show{
 }
 
 div.left-col-hide{
-    transform: translateX(-3000px) ;
+    transform: translateX(-1200%) ;
     transition: transform 1.6s ease-in;
 }
 
 div.right-col-hide{
-    transform: translateX(3000px) ;
+    transform: translateX(1200%) ;
     transition: transform 1.6s ease-in;
 }
 

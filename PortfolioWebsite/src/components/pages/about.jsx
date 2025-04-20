@@ -9,38 +9,29 @@ import { Typewriter } from 'react-simple-typewriter'
 import CurriculumVitae from "/media/files/curriculumVitae.pdf";
 import Picture from "/media/images/smusi.jpg"
 
+export var currentYear = new Date().getFullYear();
+
 export default function showAboutPage() {
-    var currentDay = new Date("Jan 1 2025").getDate();
-    var currentYear = new Date("Jan 1 2025").getFullYear();
-    var currentMonth = new Date("Jan 1 2025").getUTCMonth();
-    var currentDate = currentDay + " " + currentMonth + " " + currentYear;
-    var birthdayDate = "Jun 15 " + currentYear;
-    console.log("year: " + currentYear)
-    console.log("day: " + currentDay)
-    console.log("month: " + currentMonth)
-    console.log("current date:" + currentDate)
-    console.log(birthdayDate)
+    var currentDay = new Date().getDate();
+    var currentMonth = new Date().getMonth();
     const [birthYear, setbirthYear] = useState(2002);
     const [age, setAge] = useState();
+
+    const getAge = () => {
+        if (currentDay >= 15 && currentMonth >= 5) {
+            var theAge = currentYear - birthYear;
+            console.log(theAge)
+            setAge(theAge);
+        } else {
+            var theAge = currentYear - birthYear - 1;
+            console.log(theAge)
+            setAge(theAge);
+        }
+    }
+
     const [ScreenSizeLg] = useState(window.innerWidth <= 991)
     const [ResizePhotoXxl, setResizePhotoXxl] = useState(window.innerWidth <= 1399)
     const [ResizePhotoMd, setResizePhotoMd] = useState(window.innerWidth <= 767)
-
-    const getAge = () => {
-        while (birthdayDate != currentDay) {
-            if (birthdayDate == "Jun 15 " + currentYear || currentMonth <= 5 && currentMonth >= 11) {
-                var theAge = currentYear - birthYear;
-                console.log(theAge)
-                setAge(theAge);
-                break
-            } else if (currentMonth <= 11 && currentMonth >= 5) {
-                var theAge = currentYear - birthYear - 1;
-                console.log(theAge)
-                setAge(theAge);
-            }
-            break;
-        }
-    }
 
     useEffect(() =>{
         const handleResize = () => {
@@ -59,22 +50,28 @@ export default function showAboutPage() {
         <div className='container'>
             <div className="row my-lg-0 my-5">
                 <div id='leftCol' className={`col-lg-6 mb-lg-0 mb-4 py-lg-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
-                    <h1 className='fw-bold mb-lg-4 mb-4 mt-lg-2'>
-                        Chi sono <span className="fw-normal">e</span> cosa faccio<span className="fw-normal">:</span>
+                    <h1 className='fw-normal mb-lg-4 mb-4 mt-lg-2'>
+                        <span className="fw-bold fc-teal">Chi sono</span> e <span className="fw-bold fc-purple">cosa faccio</span>:
                     </h1>
                     <p className='fs-5 fw-normal mb-lg-2 mb-3'>
                         Mi chiamo <span className='fw-medium'>Alessandro Capurro</span>, vengo da <span className="fw-medium">
                         Genova</span>, ho <span className="fw-medium">{age}</span> anni e sono nato il <span className='fw-medium fst-italic'>
                         15 Giugno 2002</span>. Sono una persona creativa, curiosa, determinata e sempre alla ricerca di nuove sfide.
                     </p>
-                    <p className='fs-5 fw-normal mb-lg-2 mb-3'>Ho diverse passioni che variano dalla musica al fai da te, ma la 
-                    mia passione principale è l'informatica. La mia passione per l’informatica è nata fin da piccolo, quando 
-                    ho iniziato ad essere curioso di come funzionassero programmi come i browser o come creare pagine web, 
-                    curiosità che con il tempo si è trasformata in un vero e proprio interesse per la programmazione web 
-                    lato front-end, che oggi è al centro del mio percorso di crescita. </p>
-                    <p className='fs-5 fw-normal'>Il mio obiettivo è diventare uno sviluppatore front-end: adoro creare interfacce intuitive, moderne e responsive, 
-                    capaci di offrire una bella esperienza utente. Lavoro costantemente per migliorare le mie competenze in HTML, CSS, 
-                    JavaScript e framework come React, e sto costruendo passo dopo passo il mio percorso professionale in questo settore.
+                    <p className='fs-5 fw-normal mb-lg-2 mb-3'>
+                        Ho diverse passioni che variano dalla musica al fai da te, ma la mia passione principale è 
+                        <span className='fw-bold'> l'informatica.</span> Questa mia passione è nata fin da piccolo,
+                        quando ho iniziato ad essere curioso di come funzionassero programmi come i browser ed in 
+                        particolare come funzionassero le pagine web, curiosità che con il tempo si è trasformata in 
+                        un vero e proprio interesse per la programmazione web lato <span className="fw-bold">front-end</span>, 
+                        che oggi è al centro del mio percorso di crescita. 
+                    </p>
+                    <p className='fs-5 fw-normal'>
+                        Il mio obiettivo è diventare uno <span className="fw-bold">sviluppatore front-end</span>: 
+                        adoro creare interfacce intuitive, moderne e responsive, capaci di offrire una bella esperienza utente. 
+                        Lavoro costantemente per migliorare le mie competenze in <span className="fw-medium fst-italic">HTML, CSS, 
+                        JavaScript</span> e framework come <span className="fw-medium fst-italic"> React</span>, e sto costruendo 
+                        passo dopo passo il mio percorso professionale in questo settore.
                     </p>
                 </div>
                 <div id='rightCol' className={`col-lg-6 d-flex align-items-center justify-content-center p-0 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
