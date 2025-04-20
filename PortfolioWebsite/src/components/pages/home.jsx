@@ -65,7 +65,7 @@ export default function showHomePage() {
                     </div>
                     <a type='button' className='btn btn-lg px-4 fw-medium text-center cv-btn btn-light rounded-5' 
                         download={CVFileName} href={CurriculumVitae}> Scarica CV &nbsp;
-                        <span><FontAwesomeIcon icon={faFileArrowDown}/></span>
+                        <span className='icon-color'><FontAwesomeIcon icon={faFileArrowDown}/></span>
                     </a>
                 </div>
             </div>
