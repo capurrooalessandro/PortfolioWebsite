@@ -1,12 +1,7 @@
 import viteLogo from '/vite.svg'
 import { useState, useEffect } from 'react'
 import { showCols } from "../portfolioMain.jsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faFileArrowDown } from "@fortawesome/free-solid-svg-icons"
-import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons"
-import { Typewriter } from 'react-simple-typewriter'
 
-import CurriculumVitae from "/media/files/curriculumVitae.pdf";
 import Picture from "/media/images/smusi.jpg"
 
 export var currentYear = new Date().getFullYear();
