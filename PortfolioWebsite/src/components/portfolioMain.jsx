@@ -5,6 +5,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import TextPage from "./pages/test.jsx"
 import HomePage from "./pages/home.jsx"
 import AboutPage from './pages/about.jsx'
+import EducazionePage from './pages/educazione.jsx'
 import { useEffect, useState } from "react";
 
 export const showCols = () => {
@@ -51,7 +52,9 @@ export default function showPortfolioMain() {
     ////////////////////////////////////////////////////////////
 
     const scrollToTop = () => {
-        if (window.innerWidth >= 991) {
+        if (subpage == "educazione") {
+            window.scrollTo({top: 0, behavior: "smooth" });
+        } else if (window.innerWidth >= 991) {
             window.scrollTo({top: 50, behavior: "smooth" });
         } else {
             window.scrollTo({top: 0, behavior: "instant" });
@@ -193,11 +196,11 @@ export default function showPortfolioMain() {
                     </div>
                 </div>
             </nav>
-            <div id='section' className={`container-fluid ${subpage != "home" && ScreenSizeLg ? "" : "min-vh-100"} ${subpage === "home" || subpage === "about" ? "d-flex align-items-center" : ""} `} data-bs-theme="dark">
+            <div id='section' className={`container-fluid ${subpage != "home" && ScreenSizeLg ? "" : "min-vh-100"} ${subpage === "home" || subpage === "about" || subpage === "educazione" ? "d-flex align-items-center" : ""} `} data-bs-theme="dark">
                 {subpage === "home" && <HomePage/>}
                 {subpage === "about" && <AboutPage/>}
+                {subpage === "educazione" && <EducazionePage/>}
                 {subpage === "competenze" && <TextPage/>}
-                {subpage === "educazione" && <TextPage/>}
                 {subpage === "esperienza" && <TextPage/>}
             </div>
             <footer className='p-5 text-center fw-medium'>
