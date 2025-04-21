@@ -7,22 +7,22 @@ import Picture from "/media/images/smusi.jpg"
 export var currentYear = new Date().getFullYear();
 
 export default function showAboutPage() {
-    var currentDay = new Date().getDate();
-    var currentMonth = new Date().getMonth();
-    const [birthYear, setbirthYear] = useState(2002);
+    const [birthYear] = useState(2002);
     const [age, setAge] = useState();
 
     const getAge = () => {
-        if (currentDay >= 15 && currentMonth >= 5) {
-            var theAge = currentYear - birthYear;
-            console.log(theAge)
-            setAge(theAge);
-        } else {
-            var theAge = currentYear - birthYear - 1;
-            console.log(theAge)
-            setAge(theAge);
-        }
-    }
+        const today = new Date();
+        const birthDate = new Date(birthYear, 5, 15);
+        let age = today.getFullYear() - birthYear;      
+        
+        if (today.getMonth() < birthDate.getMonth() || 
+            (today.getMonth() === birthDate.getMonth() && 
+            today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+        setAge(age);
+        console.log(age);
+    };
 
     const [ScreenSizeLg] = useState(window.innerWidth <= 991)
     const [ResizePhotoXxl, setResizePhotoXxl] = useState(window.innerWidth <= 1399)
