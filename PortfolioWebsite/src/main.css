@@ -60,7 +60,7 @@ a.social-btn{
     --bs-btn-hover-color: #1F1F1F;
 }
 
-a.cv-btn:hover{
+a.cv-btn:hover, a.cv-btn:focus{
     span.icon-color{
         color: #7D6E99;
         transition: color 0.3s;
