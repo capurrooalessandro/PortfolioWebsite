@@ -1,5 +1,4 @@
 import viteLogo from '/vite.svg'
-import { currentYear } from './pages/about.jsx'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import TextPage from "./pages/test.jsx"
@@ -26,6 +25,8 @@ export const showCols = () => {
 
 
 export default function showPortfolioMain() {
+
+    var currentYear = new Date().getFullYear();
 
     //////////////////////////////////
     /// Hander code for screen size

@@ -82,6 +82,10 @@ a.cv-btn{
     }
 }
 
+.bg-purple{
+    background-color: #2A2A2A;
+}
+
 div#section{
     overflow-x: hidden;
 }

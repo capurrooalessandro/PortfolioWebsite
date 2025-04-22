@@ -44,7 +44,7 @@ export default function showHomePage() {
                     <h2 className="fw-normal mb-3">Sono un <span className='fw-bold fc-purple'><Typewriter words={["Front-end", "Web"]} loop={0} cursor 
                     cursorStyle='' typeSpeed={70} deleteSpeed={50} delaySpeed={1500}/></span><span className="fw-medium"> Developer.</span></h2>
                     <p className='fs-5 fw-normal mb-2'>Benvenuto nel mio portfolio online!</p> 
-                    <p className='fs-5 fw-normal mb-1'> Qui puoi dare un’occhiata al mio percorso: studi, 
+                    <p className='fs-5 fw-normal mb-1'> Qui puoi dare un'occhiata al mio percorso: studi, 
                     competenze ed esperienze lavorative nel mondo dello sviluppo web. </p>
                     <p className='fs-5 fw-normal'> Se hai bisogno di un front-end developer o hai intenzione 
                         di contattarmi per un'eventuale offerta lavorativa, trovi i miei contatti qui sotto:
