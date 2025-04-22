@@ -4,8 +4,6 @@ import { showCols } from "../portfolioMain.jsx";
 
 import Picture from "/media/images/smusi.jpg"
 
-export var currentYear = new Date().getFullYear();
-
 export default function showAboutPage() {
     const [birthYear] = useState(2002);
     const [age, setAge] = useState();
@@ -15,8 +13,7 @@ export default function showAboutPage() {
         const birthDate = new Date(birthYear, 5, 15);
         let age = today.getFullYear() - birthYear;      
         
-        if (today.getMonth() < birthDate.getMonth() || 
-            (today.getMonth() === birthDate.getMonth() && 
+        if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && 
             today.getDate() < birthDate.getDate())) {
                 age--;
             }
