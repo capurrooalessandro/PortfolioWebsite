@@ -1,25 +1,11 @@
 import viteLogo from '/vite.svg'
 import { useState, useEffect } from 'react'
-import { showCols } from "../portfolioMain.jsx";
+import { showCols } from "../constants/pageAnimations.jsx";
+import { getAge } from "../constants/ageCalculator.jsx";
 
 import Picture from "/media/images/smusi.jpg"
 
 export default function showAboutPage() {
-    const [birthYear] = useState(2002);
-    const [age, setAge] = useState();
-
-    const getAge = () => {
-        const today = new Date();
-        const birthDate = new Date(birthYear, 5, 15);
-        let age = today.getFullYear() - birthYear;      
-        
-        if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && 
-            today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-        setAge(age);
-        console.log(age);
-    };
 
     const [ScreenSizeLg] = useState(window.innerWidth <= 991)
     const [ResizePhotoXxl, setResizePhotoXxl] = useState(window.innerWidth <= 1399)
@@ -33,7 +19,6 @@ export default function showAboutPage() {
         if (window.innerWidth >= 991) {
             showCols()
         }
-        getAge()
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
@@ -41,16 +26,16 @@ export default function showAboutPage() {
     return(
         <div className='container'>
             <div className="row my-lg-0 my-5">
-                <div id='leftCol' className={`col-lg-6 mb-lg-0 mb-4 py-lg-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
-                    <h1 className='fw-normal mb-lg-4 mb-4 mt-lg-2'>
+                <div id='leftCol' className={`col-xl-6 mb-xl-0 mb-4 py-xl-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
+                    <h1 className='fw-normal mb-xl-4 mb-4 mt-xl-2 mt-lg-5'>
                         <span className="fw-bold fc-teal">Chi sono</span> e <span className="fw-bold fc-purple">cosa faccio</span>:
                     </h1>
-                    <p className='fs-5 fw-normal mb-lg-2 mb-3'>
+                    <p className='fs-5 fw-normal mb-xl-2 mb-3'>
                         Mi chiamo <span className='fw-medium'>Alessandro Capurro</span>, vengo da <span className="fw-medium">
-                        Genova</span>, ho <span className="fw-medium">{age}</span> anni e sono nato il <span className='fw-medium fst-italic'>
+                        Genova</span>, ho <span className="fw-medium">{getAge()}</span> anni e sono nato il <span className='fw-medium fst-italic'>
                         15 Giugno 2002</span>. Sono una persona creativa, curiosa, determinata e sempre alla ricerca di nuove sfide.
                     </p>
-                    <p className='fs-5 fw-normal mb-lg-2 mb-3'>
+                    <p className='fs-5 fw-normal mb-xl-2 mb-3'>
                         Ho diverse passioni che variano dalla musica al fai da te, ma la mia passione principale è 
                         <span className='fw-bold'> l'informatica.</span> Questa mia passione è nata fin da piccolo,
                         quando ho iniziato ad essere curioso di come funzionassero programmi come i browser ed in 
@@ -66,10 +51,10 @@ export default function showAboutPage() {
                         passo dopo passo il mio percorso professionale in questo settore.
                     </p>
                 </div>
-                <div id='rightCol' className={`col-lg-6 d-flex align-items-center justify-content-center p-0 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
+                <div id='rightCol' className={`col-xl-6 d-flex align-items-center justify-content-center p-0 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
                     <img src={Picture} alt="Foto"  width={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} 
                     height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} loading='lazy' 
-                    className='rounded-5 border border-4 mb-lg-0 mb-5'/>
+                    className='rounded-5 border border-4 mb-xl-0 mb-5'/>
                 </div>
             </div>
         </div>
