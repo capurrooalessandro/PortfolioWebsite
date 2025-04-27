@@ -1,9 +1,9 @@
 import viteLogo from '/vite.svg'
 import { useState, useEffect } from 'react'
-import { showCols } from "../portfolioMain.jsx";
+import { showCols } from "../constants/pageAnimations.jsx";
 
-import CurriculumVitae from "/media/files/curriculumVitae.pdf";
-import Picture from "/media/images/smusi.jpg"
+import IISCalvino from "/media/images/iis-calvino.jpg"
+import GastaldiAbba from "/media/images/gastaldi-abba.jpg"
 
 
 export default function showAboutPage() {
@@ -25,52 +25,51 @@ export default function showAboutPage() {
 
     return(
         <div className='container'>
-            <div className="row my-5 rounded-4 bg-purple py-5">
-                <div id='leftCol' className={`col-lg-6 d-flex align-items-center justify-content-end mb-lg-0 mb-4 py-lg-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
-                    <div className='mx-5'>
-                        <h1 className='fw-normal mb-lg-4 mb-4'>
-                            I miei studi:
+            <div id='firstRow' className={`row my-lg-5 my-3 mt-4 rounded-4 py-lg-5 pt-5 pb-4 ${ScreenSizeLg ? "bg-card" : ""}`}>
+                <div id='leftCol' className={`col-lg-6 d-flex align-items-center justify-content-center p-0 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
+                    <img src={IISCalvino} alt="Foto"  width={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} 
+                    height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} loading='lazy' 
+                    className='rounded-5 border border-4'/>
+                </div>
+                <div id='rightCol' className={`col-lg-6 d-flex align-items-center ps-lg-0 justify-content-lg-end justify-content-center py-lg-3 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
+                    <div className='mx-xl-5 mx-lg-4 mx-3'>
+                        <h1 className='fw-bold mt-lg-0 mt-4 mb-3'>
+                            I miei studi<span className="fw-normal">:</span>
                         </h1>
-                        <p className='fs-5 fw-normal'>
-                            Ho iniziato il mio percorso di studi in ambito informatico presso l'IIS Italo Calvino di Genova, 
-                            dove ho frequentato i primi quattro anni. Tuttavia, nel corso del tempo ho riscontrato diverse 
-                            lacune nell'approccio didattico e nella qualità dell'insegnamento, in particolare per quanto riguarda 
-                            l'approfondimento delle materie tecniche e di indirizzo.
+                        <p className='fs-5 fw-normal mb-xl-2 mb-3'>
+                            Ho iniziato il mio percorso di studi in ambito informatico presso 
+                            l'<span className="fw-medium fst-italic">IIS Italo Calvino</span> di 
+                            <span className="fw-medium"> Genova</span>, dove ho frequentato i 
+                            primi quattro anni. 
+                        </p>
+                        <p className="fs-5 fw-normal">
+                            Tuttavia, nel corso del tempo ho riscontrato diverse lacune nell'approccio didattico 
+                            e nella qualità dell'insegnamento, in particolare per quanto riguarda l'approfondimento 
+                            delle materie di indirizzo.
                         </p>
                     </div>
-                </div>
-                <div id='rightCol' className={`col-lg-6 d-flex align-items-center justify-content-center p-0 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
-                    <img src={Picture} alt="Foto"  width={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} 
-                    height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} loading='lazy' 
-                    className='rounded-5 border border-4 mb-lg-0 mb-5'/>
                 </div>
             </div>
-            <div className="row pt-5 rounded-4 bg-purple my-5 py-5">
-                <div id='leftCol' className={`col-lg-6 d-flex align-items-center justify-content-center p-0`}>
-                    <img src={Picture} alt="Foto"  width={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} 
-                    height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} loading='lazy' 
-                    className='rounded-5 border border-4 mb-lg-0 mb-5'/>
-                </div>
-                <div id='rightCol' className={`col-lg-6 d-flex align-items-center justify-content-start mb-lg-0 mb-4 py-lg-3`}>
-                    <div className="mx-5">
-                        <p className='fs-5 fw-normal'>
-                            Per questo motivo ho scelto di trasferirmi all'Istituto Tecnico Gastaldi-Abba, sempre a Genova, 
-                            dove ho trovato un ambiente più stimolante e un programma formativo più solido. Qui ho conseguito 
-                            il diploma di Perito Informatico con una valutazione di 81/100.
+            <div id='secondRow' className={`row pt-5 rounded-4 mb-lg-5 mb-4 py-lg-2 pb-5 ${ScreenSizeLg ? "bg-card" : ""}`}>
+                <div id='leftColGastaldi' className={`col-lg-6 d-flex align-items-center mb-lg-0 mb-4 pe-lg-0 justify-content-lg-end justify-content-center py-lg-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
+                    <div className="mx-xl-5 mx-lg-4 mx-3">
+                        <p className='fs-5 fw-normal mb-xl-2 mb-3'>
+                            Per questo motivo ho scelto di trasferirmi all'<span className="fw-medium fst-italic">Istituto Tecnico 
+                            Gastaldi-Abba</span>, sempre a <span className="fw-medium">Genova</span>, dove ho trovato 
+                            un ambiente più stimolante e un programma formativo più solido.
+                        </p>
+                        <p className="fs-5 fw-normal mb-lg-0 mb-3">
+                            Qui ho conseguito il diploma di <span className="fw-bold">Perito Informatico </span>
+                            con una valutazione di <span className="fw-bold">81/100</span>.
                         </p>
                     </div>
+                </div>
+                <div id='rightColGastaldi' className={`col-lg-6 d-flex align-items-center justify-content-center my-lg-5 p-0 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
+                    <img src={GastaldiAbba} alt="Foto"  width={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} 
+                    height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "380"}` : "480"}`} loading='lazy' 
+                    className='rounded-5 border border-4'/>
                 </div>
             </div>
         </div>
     )   
 }
-                    {/*<p className='fs-5 fw-normal'> da mettere su "competenze"
-                    Nel corso del mio percorso di studi ho avuto modo di approfondire diverse competenze, sia in ambito 
-                    informatico che non. Ho conseguito la certificazione ECDL Core, che mi ha fornito una solida base 
-                    nell'uso degli strumenti informatici più comuni, e ho seguito il corso Cisco IT Essentials 6.0, 
-                    grazie al quale ho sviluppato conoscenze pratiche sull'hardware dei computer e sul funzionamento 
-                    dei sistemi operativi.
-                    Parallelamente, ho anche lavorato sul miglioramento delle mie competenze linguistiche ottenendo 
-                    il First Certificate in English (B2), che attesta un buon livello di padronanza della lingua inglese,
-                    utile sia in contesti accademici che professionali.
-                    </p>*/}
