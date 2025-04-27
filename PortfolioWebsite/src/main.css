@@ -1,3 +1,7 @@
+*{
+    font-family: "Inter Tight", sans-serif;
+}
+
 footer{
     background-color: #121212
 }
@@ -10,7 +14,7 @@ body{
     background-color: #1F1F1F
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6, .whiteText{
     color: #E0E0E0;
 }
 
@@ -28,7 +32,7 @@ a.navbar-brand{
     transition: color 0.2s ease-in-out;
 }
 
-a.navbar-brand:hover{
+a.navbar-brand:hover, a.whiteText:hover{
     color:#bcbbbb;
     transition: color 0.2s ease-in-out;
 }
@@ -48,6 +52,11 @@ div.border-bottom{
 img.border{
     --bs-border-color: #64748B;
 }
+
+figure.border{
+    --bs-border-color: #5f5e5e;
+}
+
 
 a.social-btn{
     --bs-btn-color: #7D6E99;
@@ -82,38 +91,73 @@ a.cv-btn{
     }
 }
 
-.bg-purple{
+.bg-card{
     background-color: #2A2A2A;
+}
+
+.bg-figure{
+    background-color: #313131;
 }
 
 div#section{
     overflow-x: hidden;
 }
 
-div.left-col-hidden{
+div.left-col-hidden, div.left-col-hidden-g{
     transform: translateX(-1200%) ;
 }
 
-div.right-col-hidden{
+div.right-col-hidden, div.right-col-hidden-g{
     transform: translateX(1200%) ;
 }
 
-div.col-show-anim{
+div.col-show-anim, div.col-show-anim-g{
     transform: translateX(0%) ;
     transition: transform 1s ease-out;
 }
 
-div.right-col-show, div.left-col-show{
+div.right-col-show, div.left-col-show, div.right-col-show-g, div.left-col-show-g{
     transform: translateX(0%) ;
 }
 
-div.left-col-hide{
+div.left-col-hide, div.left-col-hide-g{
     transform: translateX(-1200%) ;
     transition: transform 1.6s ease-in;
 }
 
-div.right-col-hide{
+div.right-col-hide, div.right-col-hide-g{
     transform: translateX(1200%) ;
     transition: transform 1.6s ease-in;
 }
 
+div.text-hide{
+    opacity: 0;
+    filter: blur(2px);
+    transition: opacity 0.6s ease-out, blur 10.5s ease-out;
+}
+
+div.text-show{
+    opacity: 1;
+    filter: blur(0px);
+    transition: opacity 0.6s ease-in;
+}
+
+div.text-hidden{
+    opacity: 0;
+}
+
+
+img.img-fluid:hover{
+    cursor: pointer;
+    filter: brightness(0.8);
+    transition: filter 0.2s ease-in;
+}
+
+img.img-fluid{
+    filter: brightness(1);
+    transition: filter 0.2s ease-out;
+}
+
+.collapsing {
+    transition: none !important;
+  }
