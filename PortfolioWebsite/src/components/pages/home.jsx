@@ -1,6 +1,6 @@
 import viteLogo from '/vite.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { showCols } from "../portfolioMain.jsx";
+import { showCols } from "../constants/pageAnimations.jsx";
 import { faEnvelope, faFileArrowDown } from "@fortawesome/free-solid-svg-icons"
 import { faLinkedin, faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { Typewriter } from 'react-simple-typewriter'
@@ -43,11 +43,18 @@ export default function showHomePage() {
                     <h1 className='fw-normal'><span className='fw-medium'>Ciao</span>, sono <span className='fw-bold fc-teal'>Alessandro</span>,</h1>
                     <h2 className="fw-normal mb-3">Sono un <span className='fw-bold fc-purple'><Typewriter words={["Front-end", "Web"]} loop={0} cursor 
                     cursorStyle='' typeSpeed={70} deleteSpeed={50} delaySpeed={1500}/></span><span className="fw-medium"> Developer.</span></h2>
-                    <p className='fs-5 fw-normal mb-2'>Benvenuto nel mio portfolio online!</p> 
-                    <p className='fs-5 fw-normal mb-1'> Qui puoi dare un'occhiata al mio percorso: studi, 
-                    competenze ed esperienze lavorative nel mondo dello sviluppo web. </p>
-                    <p className='fs-5 fw-normal'> Se hai bisogno di un front-end developer o hai intenzione 
-                        di contattarmi per un'eventuale offerta lavorativa, trovi i miei contatti qui sotto:
+                    <p className='fs-5 fw-normal mb-2'>
+                        Benvenuto nel mio portfolio online!
+                    </p> 
+                    <p className='fs-5 fw-normal mb-1'> 
+                        Qui puoi dare un'occhiata al mio percorso: <span className="fw-bold fst-italic">studi</span>, 
+                        <span className="fw-bold fst-italic"> competenze </span> ed
+                        <span className="fw-bold fst-italic"> esperienze <br className='d-xxl-inline d-none' /> lavorative </span> 
+                        nel mondo dello <span className="fw-medium">sviluppo web</span>. 
+                    </p>
+                    <p className='fs-5 fw-normal'> Se hai bisogno di un <span className="fw-medium">front-end developer </span>
+                        o hai intenzione di contattarmi per un'eventuale offerta lavorativa, trovi i miei contatti 
+                        <span className="fw-bold"> qui sotto</span>:
                     </p>
                     <div className="mt-1 mb-3">
                         <a type="button" className='btn btn-lg btn-outline-light social-btn rounded-circle me-2' href={EmailAddress}>
