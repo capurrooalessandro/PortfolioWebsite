@@ -250,7 +250,7 @@ export default function showEsperienzaPage() {
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, JQuery, Canvas (HTML5)</span>.
                                 </p>
                             </div>
-                            <p id='caption5' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
+                            <p id='caption6' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
                         </figure>
                     </div>
                 </div>
@@ -307,7 +307,7 @@ export default function showEsperienzaPage() {
                             <div className="d-flex justify-content-center">
                                 <img src={BookingManagerImage} alt="RemSec" data-target="caption8" data-bs-toggle="collapse" data-bs-target="#descrizione8" width={`${ResizePhotoXxl ? `${ResizePhotoXl ? `${ResizePhotoLg ? 
                                     `${ResizePhotoMd ? `${ResizePhotoSm ? `${ResizePhotoXs ? "320" : "440"}` : "420"}` : "580"}` : "680"}` : `680`}` : "880" }`} height="620" 
-                                     className='border img-fluid rounded-2 border-4' />
+                                     className='border img-fluid rounded-2 border-4' onClick={() => hideCaption()} aria-expanded="false"/>
                             </div>
                             <div className="collapse px-2 pt-3" id='descrizione8'>
                                 <h4 className="fw-medium">Descrizione:</h4>
@@ -342,7 +342,7 @@ export default function showEsperienzaPage() {
                             <div className="d-flex justify-content-center">
                                 <img src={PortfolioWebsiteImage} alt="Il mio Portfolio" data-target="caption9" data-bs-toggle="collapse" data-bs-target="#descrizione9" width={`${ResizePhotoXxl ? `${ResizePhotoXl ? `${ResizePhotoLg ? 
                                     `${ResizePhotoMd ? `${ResizePhotoSm ? `${ResizePhotoXs ? "320" : "440"}` : "420"}` : "580"}` : "680"}` : `680`}` : "880" }`} height="620" 
-                                     className='border img-fluid rounded-2 border-4' />
+                                     className='border img-fluid rounded-2 border-4' onClick={() => hideCaption()} aria-expanded="false"/>
                             </div>
                             <div className="collapse px-2 pt-3" id='descrizione9'>
                                 <h4 className="fw-medium">Descrizione:</h4>
