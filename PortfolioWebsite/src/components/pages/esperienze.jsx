@@ -2,6 +2,7 @@ import viteLogo from '/vite.svg'
 import { useState, useEffect } from 'react'
 import { showCols, scrollToTop } from "../constants/pageAnimations.jsx";
 
+//import immagini
 import TemplateCSSImage from "/media/images/template-css.jpg"
 import CalcolatriceImage from "/media/images/calcolatrice.jpg"
 import InserimentoDatiImage from "/media/images/inserimento-dati.jpg"
@@ -12,8 +13,10 @@ import SitoWebGastaldiImage from "/media/images/sito-web-gastaldi.jpg"
 import BookingManagerImage from "/media/images/remsec.jpg"
 import PortfolioWebsiteImage from "/media/images/portfolio.jpg"
 
+//link siti web
 var W3Schools = "https://www.w3schools.com/html/html_layout.asp"
 var SitoWebGastaldi = "https://capurroalessandro.altervista.org/index.php"
+var PortfolioGithub = "https://github.com/capurrooalessandro/PortfolioWebsite"
 
 export default function showEsperienzaPage() {
     const [ScreenSizeLg] = useState(window.innerWidth <= 991)
@@ -353,6 +356,9 @@ export default function showEsperienzaPage() {
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: 
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, Bootstrap 5.3, React(con Vite), Node.js</span>.
+                                </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={PortfolioGithub} target='_blank'>{PortfolioGithub}</a>
                                 </p>
                             </div>
                             <p id='caption9' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
