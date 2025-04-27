@@ -1,115 +1,77 @@
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import TextPage from "./pages/test.jsx"
+import { scrollToTop, hideCols, showCols, closeNavbar } from "./constants/pageAnimations.jsx";
+import { today } from "./constants/ageCalculator.jsx";
+
+//Compoment relativi alle pagine
 import HomePage from "./pages/home.jsx"
 import AboutPage from './pages/about.jsx'
 import EducazionePage from './pages/educazione.jsx'
-import { useEffect, useState } from "react";
+import CompetenzePage from './pages/competenze.jsx'
+import EsperienzePage from './pages/esperienze.jsx'
 
-export const showCols = () => {
-    var leftCol = document.getElementById("leftCol")
-    var rightCol = document.getElementById("rightCol")
-
-    setTimeout(()=> {
-        leftCol.classList.remove("left-col-hidden")
-        rightCol.classList.remove("right-col-hidden")
-        leftCol.classList.add("col-show-anim")
-        rightCol.classList.add("col-show-anim")
-    }, 100)
-    setTimeout(() => {
-        leftCol.classList.remove("col-show-anim")
-        rightCol.classList.remove("col-show-anim")
-    }, 1300);
-};
-
+export let subpage; //variabile che contiene le pagine
 
 export default function showPortfolioMain() {
+    var currentYear = today.getFullYear(); //variabile utilizzata nel footer per mostrare l'anno corrente
 
-    var currentYear = new Date().getFullYear();
-
-    //////////////////////////////////
-    /// Hander code for screen size
-    //////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////
+    // Handle screen size code (utilizzato per rimuovere determinate classi se 
+    // la pagina raggiunge determinati tipi di larghezza dello schermo)
+    /////////////////////////////////////////////////////////////////////////////
 
     const [ScreenSizeLg, setScreenSizeLg] = useState(window.innerWidth <= 991)
+    const [ScreenSizeXl, setScreenSizeXl] = useState(window.innerWidth <= 1199)
 
     useEffect(() =>{
         const handleResize = () => {
             setScreenSizeLg(window.innerWidth <= 991)
+            setScreenSizeXl(window.innerWidth <= 1199)
         };
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    //////////////////////////////////////
-    /// Hander code for screen size end
-    //////////////////////////////////////
-    
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Page navigation code (Sistema di navigazione tra le varie pagine, a seconda 
+    // della voce selezionata nella navbar viene mostrato a schermo il relativo component)
+    //////////////////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////////////
-    /// Code for various functions (animations, scroll, etc.)
-    ////////////////////////////////////////////////////////////
-
-    const scrollToTop = () => {
-        if (subpage == "educazione") {
-            window.scrollTo({top: 0, behavior: "smooth" });
-        } else if (window.innerWidth >= 991) {
-            window.scrollTo({top: 50, behavior: "smooth" });
-        } else {
-            window.scrollTo({top: 0, behavior: "instant" });
-        }
-    }
-
-    const hideCols = () => {
-        var leftCol = document.getElementById("leftCol")
-        var rightCol = document.getElementById("rightCol")
-        leftCol.classList.add("left-col-show")
-        rightCol.classList.add("right-col-show")
-        setTimeout(()=> {
-            leftCol.classList.remove("left-col-show")
-            rightCol.classList.remove("right-col-show")
-            leftCol.classList.add("left-col-hide")
-            rightCol.classList.add("right-col-hide")
-        }, 100)
-        setTimeout(() => {
-            leftCol.classList.remove("left-col-hide")
-            rightCol.classList.remove("right-col-hide")
-        }, 1300);
-    }
-
-    const closeNavbar = () => {
-        if (window.innerWidth <= 991) {
-            var navbarCollapse = document.querySelector(".navbar-toggler")
-            navbarCollapse.click();
-        }
-    }
-
-    ////////////////////////////////////
-    /// Code for various functions end
-    ////////////////////////////////////
-
-
-    //////////////////////////
-    /// Page navigation code
-    //////////////////////////
-
-    const getCurrentPage = () => {
+    const getCurrentPage = () => { //restituisce la pagina corrente
         const pathSegments = window.location.pathname.split("/");
         return pathSegments.length > 1 ? pathSegments[1] : "home";
     };
 
-    const validPages = ["home", "about", "competenze", "educazione", "esperienza"];
-    const [subpage, setPage] = useState(null);
+    let setPage;
+    let pages = [subpage, setPage] = useState(null)
+
 
     const handleNavigation = (newPage, subpage = null) => {
+    /* 
+        in base alla pagina selezionata presente nella navbar viene mostrato il
+        component relativo alla pagina (es. se viene cliccata l'opzione "about" 
+        la variabile subpage sarà uguale ad about e verà mostrato a schermo il 
+        relativo component)
+
+        se la pagina ha come larghezza dello schermo meno di 991px allora
+        viene cambiata la pagina senza animazione, altrimenti vengono richiamate 
+        le funzioni dedicate alle animazioni (hideCols, showCols) e viene cambiata 
+        la pagina  
+    */
         if (validPages.includes(newPage)) {
             if (window.innerWidth <= 991) {
                 window.history.pushState(null, "", `/${newPage}`); 
                 setPage(newPage);
+                scrollToTop();
             } else {
                 hideCols();
+                
+                setTimeout(() => {
+                    scrollToTop();
+                }, 500);
+
                 setTimeout(() => {
                     window.history.pushState(null, "", `/${newPage}`); 
                     setPage(newPage);
@@ -121,17 +83,20 @@ export default function showPortfolioMain() {
             window.history.replaceState(null, "", "/home");
             setPage("home");
         }
-        scrollToTop();
         closeNavbar();
     };
+
+    const validPages = ["home", "about", "competenze", "educazione", "esperienze"]; // array delle pagine valide
+
 
     useEffect(() => {
         const currentPage = getCurrentPage();
 
         if (!validPages.includes(currentPage) || window.location.pathname == "/") {
+            //se viene digitato un url errato o dopo lo slash non è presente nessuna voce l'url verrà cambiato con "home"
             window.history.replaceState(null, "", "/home");
             setPage("home");
-        } else {
+        } else { 
             setPage(currentPage);
         }
 
@@ -184,27 +149,28 @@ export default function showPortfolioMain() {
                     </button>
                     <div className="collapse navbar-collapse d-lg-flex justify-content-md-end text-center" id="navbarCollapse">
                         <div className="navbar-nav mt-lg-0 mt-3">
-                            <a className={`nav-link mx-lg-1 ${subpage === "home" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("home")}>Home</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "home" ? `active fw-bold ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("home")}>Home</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "about" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("about")}>About</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "about" ? `active fw-bold ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("about")}>About</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "educazione" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("educazione")}>Educazione</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "educazione" ? `active fw-bold ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("educazione")}>Educazione</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "competenze" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("competenze")}>Competenze</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "competenze" ? `active fw-bold ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("competenze")}>Competenze</a>
                             <div className="border-bottom d-lg-none d-block my-2"></div>
-                            <a className={`nav-link mx-lg-1 ${subpage === "esperienza" ? `active fw-medium ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("esperienza")}>Esperienza</a>
+                            <a className={`nav-link mx-lg-1 ${subpage === "esperienze" ? `active fw-bold ${ScreenSizeLg ? "" : "border-bottom border-light"}` : ""}`} onClick={() => handleNavigation("esperienze")}>Esperienze</a>
                         </div>
                     </div>
                 </div>
             </nav>
-            <div id='section' className={`container-fluid ${subpage != "home" && ScreenSizeLg ? "" : "min-vh-100"} ${subpage === "home" || subpage === "about" || subpage === "educazione" ? "d-flex align-items-center" : ""} `} data-bs-theme="dark">
+            <div id='section' className={`container-fluid ${subpage != "home" && ScreenSizeLg ? "" : "min-vh-100"} ${subpage != "educazione" && subpage != "esperienze" ? "d-flex align-items-center" : ""} `} 
+                data-bs-theme="dark">
                 {subpage === "home" && <HomePage/>}
                 {subpage === "about" && <AboutPage/>}
                 {subpage === "educazione" && <EducazionePage/>}
-                {subpage === "competenze" && <TextPage/>}
-                {subpage === "esperienza" && <TextPage/>}
+                {subpage === "competenze" && <CompetenzePage/>}
+                {subpage === "esperienze" && <EsperienzePage/>}
             </div>
-            <footer className='p-5 text-center fw-medium'>
+            <footer className={`p-5 text-center fw-medium`}>
                 © {currentYear} Capurro Alessandro, tutti i diritti riservati.
             </footer>
         </div>
