@@ -1,6 +1,6 @@
 import viteLogo from '/vite.svg'
 import { useState, useEffect } from 'react'
-import { showCols, scrollToTop } from "../constants/pageAnimations.jsx";
+import { showCols, hideCaption } from "../constants/pageAnimations.jsx";
 
 //import immagini
 import TemplateCSSImage from "/media/images/template-css.jpg"
@@ -16,9 +16,22 @@ import PortfolioWebsiteImage from "/media/images/portfolio.jpg"
 //link siti web
 var W3Schools = "https://www.w3schools.com/html/html_layout.asp"
 var SitoWebGastaldi = "https://capurroalessandro.altervista.org/index.php"
+
+//link Github dei miei progetti
+var TemplateCSSGithub = "https://github.com/capurrooalessandro/TemplateResponsiveHTML5"
+var CalcolatriceGithub = "https://github.com/capurrooalessandro/CalcolatriceJavascript"
+var InserimentoDatiGithub = "https://github.com/capurrooalessandro/InserimentoDati"
+var GiocoImpiccatoGithub = "https://github.com/capurrooalessandro/GiocoImpiccato"
+var TrisJQueryGithub = "https://github.com/capurrooalessandro/Tris-JQuery"
+var SpaceInvadersGithub = "https://github.com/capurrooalessandro/SpaceInvadersClone"
+var SitoWebGastaldiGithub = "https://github.com/capurrooalessandro/SitoWebMaturita"
 var PortfolioGithub = "https://github.com/capurrooalessandro/PortfolioWebsite"
 
 export default function showEsperienzaPage() {
+    /////////////////////////////////////////////////////////////////////////////
+    // Handle screen size code (utilizzato per rimuovere determinate classi se 
+    // la pagina raggiunge determinati tipi di larghezza dello schermo)
+    /////////////////////////////////////////////////////////////////////////////
     const [ScreenSizeLg] = useState(window.innerWidth <= 991)
     const [ResizePhotoXxl, setResizePhotoXxl] = useState(window.innerWidth <= 1399)
     const [ResizePhotoXl, setResizePhotoXl] = useState(window.innerWidth <= 1199)
@@ -28,7 +41,7 @@ export default function showEsperienzaPage() {
     const [ResizePhotoXs, setResizePhotoXs] = useState(window.innerWidth <= 539)
 
     useEffect(() =>{
-        const handleResize = () => {
+        const handleResize = () => { //costruttore che gestisce il resize della pagina
             setResizePhotoXxl(window.innerWidth <= 1399)
             setResizePhotoXl(window.innerWidth <= 1199)
             setResizePhotoLg(window.innerWidth <= 991)
@@ -44,31 +57,13 @@ export default function showEsperienzaPage() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const hideCaption = () => {
-        const collapseImgs = document.querySelectorAll(".img-fluid");
-        const collapseDivs = document.querySelectorAll(".collapse");
-    
-        collapseImgs.forEach(img => {
-            const captionId = img.getAttribute('data-target');
-            const caption = document.getElementById(captionId);
-            if (!caption) return; // safety check
-    
-            const isExpanded = img.getAttribute('aria-expanded') === "true";
-    
-            if (isExpanded) {
-                caption.classList.add("d-none");
-            } else {
-                caption.classList.remove("d-none");
-            }
-        });
-    }
-
     return(
         <div className={`container`}>
             <div className={`row my-lg-0 my-5 pb-lg-5 pb-2 pt-lg-5 pt-0`}>
                 <div id='leftCol' className={`col-lg-12 mt-lg-5 py-lg-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
                     <h1 className='fw-bold text-start mb-md-4 mb-sm-3 mb-4'>
-                        Le mie esperienze lavorative (sia scolastiche che non):
+                        Le mie <span className="fc-purple">esperienze lavorative </span>
+                        (sia  <span className="fc-teal">scolastiche</span> che non):
                     </h1>
                 </div>
                 <div id='rightCol' className={`col-lg ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
@@ -85,8 +80,8 @@ export default function showEsperienzaPage() {
                     </p>
                     <p className="fs-5 fw-normal">
                         Per molti dei progetti web che trovi elencati, è disponibile nella descrizione il link 
-                        diretto alla relativa pagina GitHub, dove puoi visualizzare il codice sorgente e approfondire 
-                        il lavoro svolto.
+                        diretto alla relativa pagina <span className="fw-semibold">GitHub</span>, dove puoi visualizzare 
+                        il codice sorgente e approfondire il lavoro svolto.
                     </p>
                 </div>
             </div>
@@ -117,6 +112,9 @@ export default function showEsperienzaPage() {
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: <span className="fst-italic fw-medium">HTML5, CSS</span>
                                 </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={TemplateCSSGithub} target='_blank'>Template</a>
+                                </p>
                             </div>
                             <p id='caption1' className={`fs-6 fw-bold mt-3 mb-1 mx-3 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
                         </figure>
@@ -140,6 +138,9 @@ export default function showEsperienzaPage() {
                                 </p>
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: <span className="fst-italic fw-medium">HTML5, CSS, JavaScript</span>.
+                                </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={CalcolatriceGithub} target='_blank'>Calcolatrice</a>
                                 </p>
                             </div>
                             <p id='caption2' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
@@ -165,6 +166,9 @@ export default function showEsperienzaPage() {
                                 </p>
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: <span className="fst-italic fw-medium">HTML5, CSS, JavaScript</span>.
+                                </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={InserimentoDatiGithub} target='_blank'>Inserimento dati</a>
                                 </p>
                             </div>
                             <p id='caption3' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
@@ -199,6 +203,9 @@ export default function showEsperienzaPage() {
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: <span className="fst-italic fw-medium">HTML5, CSS, JavaScript, JQuery</span>.
                                 </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={GiocoImpiccatoGithub} target='_blank'>Gioco dell'impiccato</a>
+                                </p>
                             </div>
                             <p id='caption4' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
                         </figure>
@@ -222,6 +229,9 @@ export default function showEsperienzaPage() {
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: 
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, JQuery</span>.
+                                </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={TrisJQueryGithub} target='_blank'>Tris</a>
                                 </p>
                             </div>
                             <p id='caption5' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
@@ -248,6 +258,9 @@ export default function showEsperienzaPage() {
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: 
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, JQuery, Canvas (HTML5)</span>.
+                                </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={SpaceInvadersGithub} target='_blank'>Space Invaders</a>
                                 </p>
                             </div>
                             <p id='caption6' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
@@ -288,6 +301,9 @@ export default function showEsperienzaPage() {
                                 <p className="fs-5 fw-normal">
                                     Linguaggi utilizzati: 
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, JQuery, Bootstrap 4, PHP, MySQL</span>.
+                                </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <a href={SitoWebGastaldiGithub} target='_blank'>Sito web maturità</a>
                                 </p>
                             </div>
                             <p id='caption7' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
@@ -332,6 +348,9 @@ export default function showEsperienzaPage() {
                                     Linguaggi utilizzati: 
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, JQuery, Bootstrap 5.3, React(con Vite), Node.js, Java Spring Boot 3, MySQL</span>.
                                 </p>
+                                <p className="fs-5 fw-normal">
+                                    GitHub: <span className='fst-italic'>(non disponibile)</span>
+                                </p>
                             </div>
                             <p id='caption8' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>
                         </figure>
@@ -358,7 +377,7 @@ export default function showEsperienzaPage() {
                                     <span className="fst-italic fw-medium"> HTML5, CSS, JavaScript, Bootstrap 5.3, React(con Vite), Node.js</span>.
                                 </p>
                                 <p className="fs-5 fw-normal">
-                                    GitHub: <a href={PortfolioGithub} target='_blank'>{PortfolioGithub}</a>
+                                    GitHub: <a href={PortfolioGithub} className='text-break' target='_blank'>Portfolio</a>
                                 </p>
                             </div>
                             <p id='caption9' className={`fs-6 fw-bold mt-3 mb-1 text-center`}>Clicca sull'immagine per maggiori informazioni</p>

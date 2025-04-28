@@ -4,7 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { scrollToTop, hideCols, showCols, closeNavbar } from "./constants/pageAnimations.jsx";
 import { today } from "./constants/ageCalculator.jsx";
 
-//Compoment relativi alle pagine
+//Compoment relativi alle pagine (vengono mostrati a schermo in base alla voce selezionata nella navbar)
 import HomePage from "./pages/home.jsx"
 import AboutPage from './pages/about.jsx'
 import EducazionePage from './pages/educazione.jsx'
@@ -25,8 +25,8 @@ export default function showPortfolioMain() {
     const [ScreenSizeXl, setScreenSizeXl] = useState(window.innerWidth <= 1199)
 
     useEffect(() =>{
-        const handleResize = () => {
-            setScreenSizeLg(window.innerWidth <= 991)
+        const handleResize = () => { //costruttore che gestisce il resize della pagina
+            setScreenSizeLg(window.innerWidth <= 991) //imposta la larghezza della foto in base alla larghezza dello schermo
             setScreenSizeXl(window.innerWidth <= 1199)
         };
 
@@ -60,22 +60,22 @@ export default function showPortfolioMain() {
         le funzioni dedicate alle animazioni (hideCols, showCols) e viene cambiata 
         la pagina  
     */
-        if (validPages.includes(newPage)) {
+        if (validPages.includes(newPage)) { //se la pagina è valida viene cambiata, altrimenti viene cambiata in home
             if (window.innerWidth <= 991) {
                 window.history.pushState(null, "", `/${newPage}`); 
                 setPage(newPage);
-                scrollToTop();
+                scrollToTop(); //riporta la pagina nella posizione corretta
             } else {
-                hideCols();
+                hideCols(); //nasconde le colonne e il testo
                 
                 setTimeout(() => {
-                    scrollToTop();
+                    scrollToTop(); //riporta la pagina nella posizione corretta
                 }, 500);
 
                 setTimeout(() => {
-                    window.history.pushState(null, "", `/${newPage}`); 
-                    setPage(newPage);
-                    showCols()
+                    window.history.pushState(null, "", `/${newPage}`);  //cambia l'url
+                    setPage(newPage); //cambia la pagina
+                    showCols() //mostra le colonne e il testo
                 }, 1000);
             }
 
@@ -100,19 +100,19 @@ export default function showPortfolioMain() {
             setPage(currentPage);
         }
 
-        const handlePopState = () => {
-            const currentPage = getCurrentPage();
-            if (!validPages.includes(currentPage)) {
+        const handlePopState = () => { //gestione della navigazione con i tasti avanti e indietro
+            const currentPage = getCurrentPage(); //getCurrentPage() viene richiamata per ottenere la pagina corrente
+            if (!validPages.includes(currentPage)) { //se la pagina non è valida viene cambiata in home
                 window.history.replaceState(null, "", "/home");
                 setPage("home");
-            } else {
+            } else { //altrimenti viene cambiata la pagina
                 if (window.innerWidth <= 991) {
                     setPage(currentPage);
                 } else {
-                    hideCols();
+                    hideCols(); //nasconde le colonne e il testo
                     setTimeout(() => {
                         setPage(currentPage);
-                        showCols()
+                        showCols() //mostra le colonne e il testo
                     }, 1000);
                 }
             }
@@ -124,7 +124,7 @@ export default function showPortfolioMain() {
     }, []);
 
     useEffect(() => {
-        if (subpage !== null) {
+        if (subpage !== null) { //se la pagina è valida viene cambiata l'url
             if (subpage !== "home" && !window.location.pathname.includes(subpage)) {
                 window.history.pushState(null, "", `/${subpage}`);
             }
@@ -162,7 +162,7 @@ export default function showPortfolioMain() {
                     </div>
                 </div>
             </nav>
-            <div id='section' className={`container-fluid ${subpage != "home" && ScreenSizeLg ? "" : "min-vh-100"} ${subpage != "educazione" && subpage != "esperienze" ? "d-flex align-items-center" : ""} `} 
+            <div id='section' className={`container-fluid ${ScreenSizeLg ? "" : "min-vh-100"} ${subpage != "esperienze" ? "d-flex align-items-center" : ""} `} 
                 data-bs-theme="dark">
                 {subpage === "home" && <HomePage/>}
                 {subpage === "about" && <AboutPage/>}

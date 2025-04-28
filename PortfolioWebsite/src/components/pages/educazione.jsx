@@ -7,13 +7,18 @@ import GastaldiAbba from "/media/images/gastaldi-abba.jpg"
 
 
 export default function showAboutPage() {
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Handle screen size code (utilizzato per rimuovere determinate classi o parametri se 
+    // la pagina raggiunge determinati tipi di larghezza dello schermo)
+    //////////////////////////////////////////////////////////////////////////////////////////
+
     const [ScreenSizeLg] = useState(window.innerWidth <= 991)
     const [ResizePhotoXxl, setResizePhotoXxl] = useState(window.innerWidth <= 1399)
     const [ResizePhotoMd, setResizePhotoMd] = useState(window.innerWidth <= 767)
 
     useEffect(() =>{
-        const handleResize = () => {
-            setResizePhotoXxl(window.innerWidth <= 1399)
+        const handleResize = () => { //costruttore che gestisce il resize della pagina
+            setResizePhotoXxl(window.innerWidth <= 1399) //imposta la larghezza della foto in base alla larghezza dello schermo
             setResizePhotoMd(window.innerWidth <= 767)
         };
         if (window.innerWidth >= 991) {
@@ -34,12 +39,12 @@ export default function showAboutPage() {
                 <div id='rightCol' className={`col-lg-6 d-flex align-items-center ps-lg-0 justify-content-lg-end justify-content-center py-lg-3 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
                     <div className='mx-xl-5 mx-lg-4 mx-3'>
                         <h1 className='fw-bold mt-lg-0 mt-4 mb-3'>
-                            I miei studi<span className="fw-normal">:</span>
+                            I miei <span className="fc-teal">studi</span><span className="fw-normal">:</span>
                         </h1>
                         <p className='fs-5 fw-normal mb-xl-2 mb-3'>
                             Ho iniziato il mio percorso di studi in ambito informatico presso 
-                            l'<span className="fw-medium fst-italic">IIS Italo Calvino</span> di 
-                            <span className="fw-medium"> Genova</span>, dove ho frequentato i 
+                            l'<span className="fw-semibold fst-italic">IIS Italo Calvino</span> di 
+                            <span className="fw-semibold"> Genova</span>, dove ho frequentato i 
                             primi quattro anni. 
                         </p>
                         <p className="fs-5 fw-normal">
@@ -54,8 +59,8 @@ export default function showAboutPage() {
                 <div id='leftColGastaldi' className={`col-lg-6 d-flex align-items-center mb-lg-0 mb-4 pe-lg-0 justify-content-lg-end justify-content-center py-lg-3 ${ScreenSizeLg ? "" : "left-col-hidden"}`}>
                     <div className="mx-xl-5 mx-lg-4 mx-3">
                         <p className='fs-5 fw-normal mb-xl-2 mb-3'>
-                            Per questo motivo ho scelto di trasferirmi all'<span className="fw-medium fst-italic">Istituto Tecnico 
-                            Gastaldi-Abba</span>, sempre a <span className="fw-medium">Genova</span>, dove ho trovato 
+                            Per questo motivo ho scelto di trasferirmi all'<span className="fw-semibold fst-italic">Istituto Tecnico 
+                            Gastaldi-Abba</span>, sempre a <span className="fw-semibold">Genova</span>, dove ho trovato 
                             un ambiente più stimolante e un programma formativo più solido.
                         </p>
                         <p className="fs-5 fw-normal mb-lg-0 mb-3">

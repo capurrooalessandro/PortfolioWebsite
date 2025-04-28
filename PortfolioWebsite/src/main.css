@@ -1,7 +1,12 @@
-*{
+*{ /*viene applicato un font custom a tutti gli elementi, compresi gli pseudo-elementi e gli pseudo-classi. */
     font-family: "Inter Tight", sans-serif;
 }
 
+.collapsing, .show, .collapse{
+    transition: none !important;
+}
+
+/* colori per il tema scuro */
 footer{
     background-color: #121212
 }
@@ -50,7 +55,7 @@ div.border-bottom{
 }
 
 img.border{
-    --bs-border-color: #64748B;
+    --bs-border-color: #666666;
 }
 
 figure.border{
@@ -58,6 +63,7 @@ figure.border{
 }
 
 
+/* colori per i pulsanti*/
 a.social-btn{
     --bs-btn-color: #7D6E99;
     --bs-btn-active-color:#bcbbbb;
@@ -69,7 +75,7 @@ a.social-btn{
     --bs-btn-hover-color: #1F1F1F;
 }
 
-a.cv-btn:hover, a.cv-btn:focus{
+a.cv-btn:hover, a.cv-btn:focus-visible{
     span.icon-color{
         color: #7D6E99;
         transition: color 0.3s;
@@ -103,6 +109,8 @@ div#section{
     overflow-x: hidden;
 }
 
+
+/* Animazioni per le colonne */
 div.left-col-hidden, div.left-col-hidden-g{
     transform: translateX(-1200%) ;
 }
@@ -146,7 +154,7 @@ div.text-hidden{
     opacity: 0;
 }
 
-
+/* Animazioni per le immagini */
 img.img-fluid:hover{
     cursor: pointer;
     filter: brightness(0.8);
@@ -157,7 +165,3 @@ img.img-fluid{
     filter: brightness(1);
     transition: filter 0.2s ease-out;
 }
-
-.collapsing {
-    transition: none !important;
-  }
