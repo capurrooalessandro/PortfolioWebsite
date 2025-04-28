@@ -53,7 +53,7 @@ export default function showAboutPage() {
                 </div>
                 <div id='rightCol' className={`col-xl-6 d-flex align-items-center justify-content-center p-0 ${ScreenSizeLg ? "" : "right-col-hidden"}`}>
                     <img src={Picture} alt="Foto"  width={`${ResizePhotoXxl ? `${ResizePhotoMd ? "350" : "400"}` : "500"}`} 
-                    height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "450" : "500"}` : "600"}`} loading='lazy' 
+                    height={`${ResizePhotoXxl ? `${ResizePhotoMd ? "420" : "480"}` : "600"}`} loading='lazy' 
                     className='rounded-5 border border-4 mb-xl-0 mb-5'/>
                 </div>
             </div>
